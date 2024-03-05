@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Database</title>
+    <link rel="stylesheet" href="commonStyles.css" />
+  </head>
+
+  <body>
+    <div id="links">
+      <div><a href="index.html">Home</a></div>
+      <div><a href="applied.html">Applied Jobs</a></div>
+      <div><a href="bookmark.html">Bookmarks</a></div>
+    </div>
+
+    <main>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Job applied</th>
+            <th>Salary expected</th>
+            <th>Add to bookmark</th>
+          </tr>
+        </thead>
+        <tbody id="body">
+          <!-- Append your output to tbody -->
+        </tbody>
+      </table>
+    </main>
+  </body>
+  <script>
+
+    let newdata= JSON.parse(localStorage.getItem("userData"))
+
+    
+    let deleteList= []
+
+    function display(newdata){
+
+      newdata.forEach(function(element, index){
+
+      let row= document.createElement("tr")
+
+      let col1= document.createElement("td")
+      col1.innerText= element.enterName
+
+      let col2= document.createElement("td")
+      col2.innerText= element.enterEmail
+
+      let col3= document.createElement("td")
+      col3.innerText= element.enterRole
+
+      let col4= document.createElement("td")
+      col4.innerText= element.enterSalary
+
+      let col5= document.createElement("td")
+      let btn= document.createElement("button")
+      btn.innerText= "Bookmark"
+      col5.append(btn)
+ 
+      btn.addEventListener("click", function(event){
+        let newList= []
+        let newdeleteList=deleteList   
+        for(let i=0; i< newdata.length; i++){
+
+          if(index===i){
+            deleteList.push(newdata[i])
+          }else{
+            newList.push(newdata[i])
+          }
+
+        }
+
+        document.getElementById("body").innerHTML=null
+
+        newdata=newList
+        display(newList)
+
+        localStorage.setItem("userData", JSON.stringify(newdata))
+        
+        localStorage.setItem("bookMarkdata", JSON.stringify(deleteList))
+        
+       })
+
+      row.append(col1, col2, col3, col4, col5)
+      document.getElementById("body").append(row)
+   })
+}
+
+
+
+display(newdata)
+
+  
+
+    
+  </script>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admitted</title>
+    <link rel="stylesheet" href="commonStyles.css" />
+  </head>
+
+  <body>
+    <div id="links">
+      <div><a href="index.html">Home</a></div>
+      <div><a href="applied.html">Applied Jobs</a></div>
+      <div><a href="bookmark.html">Bookmarks</a></div>
+    </div>
+    <main>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Job Applied</th>
+          </tr>
+        </thead>
+        <tbody id="body"></tbody>
+      </table>
+    </main>
+  </body>
+  <script>
+    //you need to code here
+
+    let bookdata= JSON.parse(localStorage.getItem("bookMarkdata"))
+
+    let body= document.getElementById("body")
+
+    
+    for(let i= 0; i <bookdata.length; i++){
+
+      let row= document.createElement("tr")
+
+      let col1= document.createElement("td")
+      col1.innerText= bookdata[i].enterName
+
+      let col2= document.createElement("td")
+      col2.innerText= bookdata[i].enterEmail
+
+      let col3= document.createElement("td")
+      col3.innerText=bookdata[i].enterRole
+
+      row.append(col1, col2, col3)
+
+      body.append(row)
+
+
+
+    }
+
+
+
+  </script>
+</html>
